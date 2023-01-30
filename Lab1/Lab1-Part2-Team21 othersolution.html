@@ -1,0 +1,112 @@
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+
+<style>
+    .Type {
+        text-align: right;
+    }
+
+    .Action {
+        text-align: left;
+    }
+</style>
+<center><h1>Electronics-Center</h1></center>
+<div class="Type">
+    <h2>
+        Type:
+        <select name="Type">
+            <option value=0>LapTop</option>
+            <option value=1>NoteBook</option>
+            <option value=2>Tablet</option>
+            <option value=3>CellPhone</option>
+        </select>
+    </h2>
+    <div>
+        <div class="Action">
+            <h2>
+                Action:
+                <select name="Action">
+                    <option value=0>Archive</option>
+                    <option value=1>Edit</option>
+                    <option value=2>Delete</option>
+                    <option value=3>Collection</option>
+                </select>
+            </h2>
+        </div>
+        <center>
+            <table border="4" id="myTable">
+                <tr>
+                    <th>Devices</th>
+                    <th>Images</th>
+                    <th>Name</th>
+                    <th>Company</th>
+                    <th>Year</th>
+                    <th>Type</th>
+                    <th>Actions</th>
+                </tr>
+                <tr id="1">
+                    <td>
+                        <input type="radio" class="buttonFdin" name="drone" value="yes" checked />
+                        <label for="buttonFdin">Yes</label>
+                        <input type="radio" class="buttonFdout" name="drone" value="no" />
+                        <label for="buttonFdout">No</label>
+                    </td>
+
+                    <td><img id="img-data" src="https://www.uvt.us/web/image/product.template/1805/image_256/%5B101-131-1001%5D%20DJI%20Air%202S?unique=7ae1f76" height="100" width="100"></td></td>
+                    <td>Mini 2</td>
+                    <td>DJI</td>
+                    <td>2020</td>
+                    <td>Drone</td>
+                    <td><button>Button1</button><button>Button2</button><button>Button3</button><button>Button4</button></td>
+                </tr>
+
+
+                <tr id="2">
+                    <td>
+                        <input type="radio" class="buttonFdin" name="ps5" value="yes" checked />
+                        <label for="buttonFdin">Yes</label>
+                        <input type="radio" class="buttonFdout" name="ps5" value="no" />
+                        <label for="buttonFdout">No</label>
+                    </td>
+
+                    <td><img id="img-data" src="https://pallstore.com/storage/images/sony-ps5-disk-edition-console-game-12048-256x256.webp" height="100" width="100"></td></td>
+                    <td>Playstation 5</td>
+                    <td>Sony</td>
+                    <td>2020</td>
+                    <td>Gaming Console</td>
+                    <td><button>Button1</button><button>Button2</button><button>Button3</button><button>Button4</button></td>
+                </tr>
+
+
+                <tr id="3">
+                    <td>
+                        <input type="radio" class="buttonFdin" name="iphone" value="yes" checked />
+                        <label for="buttonFdin">Yes</label>
+                        <input type="radio" class="buttonFdout" name="iphone" value="no" />
+                        <label for="buttonFdout">No</label>
+                    </td>
+                    <td><img id="img-data" src="https://www.jumpplus.com/web/image/product.template/27511/image_256/%5B3J790V-A%5D%20iPhone%2013%20Pro%20Max%20128GB%20Graphite%20%28Demo%29?unique=6200ddc" height="100" width="100"></td>
+                    <td>iPhone 13 pro</td>
+                    <td>Apple</td>
+                    <td>2021</td>
+                    <td>Smart Phone</td>
+                    <td><button>Button1</button><button>Button2</button><button>Button3</button><button>Button4</button></td>
+                </tr>
+            </table>
+            <script>
+                $(document).ready(function () {
+                    $(".buttonFdin").click(function () {
+                        var rowId = event.target.parentNode.parentNode.id;
+                        var img = document.getElementById(rowId).querySelector("#img-data");
+                        $(img).fadeIn();
+                    });
+                    $(".buttonFdout").click(function () {
+                        var rowId = event.target.parentNode.parentNode.id;
+                        var img = document.getElementById(rowId).querySelector("#img-data");
+                        $(img).fadeOut();
+                    });
+                });
+            </script>
+        </center>
+</html>
