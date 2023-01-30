@@ -1,0 +1,167 @@
+<html>
+<script src="jquery-3.6.1.min.js"></script>
+<style>
+    .Type{text-align: right;}
+    .Action{text-align: left;}
+</style>
+<center><h1>Electronics-Center</h1></center>
+<div class="Type">
+<h2>
+Type: 
+<select name="Type">
+    <option value=0>LapTop</option>
+    <option value=1>NoteBook</option>
+    <option value=2>Tablet</option>
+    <option value=3>CellPhone</option>
+</select>
+</h2>
+<div>
+<div class="Action">
+<h2>
+Action: 
+<select name="Action">
+    <option value=0>Archive</option>
+    <option value=1>Edit</option>
+    <option value=2>Delete</option>
+    <option value=3>Collection</option>
+</select>
+</h2>
+</div>
+<center>
+<table border="4">
+    <tr>
+        <th>Devices</th>
+        <th>Images</th>
+        <th>Name</th>
+        <th>Company</th>
+        <th>Year</th>
+        <th>Type</th>
+        <th>Actions</th>
+    </tr>
+    <tr>
+        <td>
+          <div>
+            Show Image<input type="radio" id="drone-show-img" name="Drone" value="drone">
+            Hide Image<input type="radio" id="drone-hide-img" name="Drone" value="drone">
+          </div>
+          <div>
+            Show Info<input type="radio" id="drone-show-info" name="Drone" value="drone">
+            Hide Info<input type="radio" id="drone-hide-info" name="Drone" value="drone">
+          </div>
+        </td>
+        <td><img id="drone-img" src="https://www.uvt.us/web/image/product.template/1805/image_256/%5B101-131-1001%5D%20DJI%20Air%202S?unique=7ae1f76" height="100" width="100"></td></td>
+        <td><div class="drone-info">Mini 2</div></td>
+        <td><div class="drone-info">DJI</div></td>
+        <td><div class="drone-info">2020</div></td>
+        <td><div class="drone-info">Drone</div></td>
+        <td><button>Button1</button><button>Button2</button><button>Button3</button><button>Button4</button></td>
+    </tr>
+    <tr>
+        <td>
+          <div>
+            Show Image<input type="radio" id="ps5-show-img" name="Ps5" value="ps5">
+            Hide Image<input type="radio" id="ps5-hide-img" name="Ps5" value="ps5">
+          </div>
+          <div>
+            Show Info<input type="radio" id="ps5-show-info" name="Ps5" value="ps5">
+            Hide Info<input type="radio" id="ps5-hide-info" name="Ps5" value="ps5">
+          </div>
+        </td>
+        <td><img id="ps5-img" src="https://pallstore.com/storage/images/sony-ps5-disk-edition-console-game-12048-256x256.webp" height="100" width="100"></td></td>
+        <td><div class="ps5-info">Playstation 5</div></td>
+        <td><div class="ps5-info">Sony</div></td>
+        <td><div class="ps5-info">2020</div></td>
+        <td><div class="ps5-info">Gaming Console</div></td>
+        <td><button>Button1</button><button>Button2</button><button>Button3</button><button>Button4</button></td>
+    </tr>
+    <tr>
+        <td>
+          <div>
+            Show Image<input type="radio" id="iphone-show-img" name="Iphone" value="iphone">
+            Hide Image<input type="radio" id="iphone-hide-img" name="Iphone" value="iphone">
+          </div>
+          <div>
+            Show Info<input type="radio" id="iphone-show-info" name="Iphone" value="iphone">
+            Hide Info<input type="radio" id="iphone-hide-info" name="Iphone" value="iphone">
+          </div>
+        </td>
+        <td><img id="iphone-img" src="https://www.jumpplus.com/web/image/product.template/27511/image_256/%5B3J790V-A%5D%20iPhone%2013%20Pro%20Max%20128GB%20Graphite%20%28Demo%29?unique=6200ddc" height="100" width="100"></td>
+        <td><div class="iphone-info">iPhone  13 pro</div></td>
+        <td><div class="iphone-info">Apple</div></td>
+        <td><div class="iphone-info">2021</div></td>
+        <td><div class="iphone-info">Smart Phone</div></td>
+        <td><button>Button1</button><button>Button2</button><button>Button3</button><button>Button4</button></td>
+    </tr>
+</table>
+</center>
+<script>
+  // Drone radio button show/hide
+  $("#drone-show-img").change(function() {
+    if ($(this).is(':checked')) {
+      $("#drone-img").fadeIn("slow")
+    }
+  })
+  $("#drone-hide-img").change(function() {
+    if ($(this).is(':checked')) {
+      $("#drone-img").fadeOut("slow")
+    }
+  })
+  $("#drone-show-info").change(function() {
+    if ($(this).is(':checked')) {
+      $(".drone-info").fadeIn("slow")
+    }
+  })
+  $("#drone-hide-info").change(function() {
+    if ($(this).is(':checked')) {
+      $(".drone-info").fadeOut("slow")
+    }
+  })
+
+  // PS5 radio button show/hide
+  $("#ps5-show-img").change(function() {
+    if ($(this).is(':checked')) {
+      $("#ps5-img").fadeIn("slow")
+    }
+  })
+  $("#ps5-hide-img").change(function() {
+    if ($(this).is(':checked')) {
+      $("#ps5-img").fadeOut("slow")
+    }
+  })
+  $("#ps5-show-info").change(function() {
+    if ($(this).is(':checked')) {
+      $(".ps5-info").fadeIn("slow")
+    }
+  })
+  $("#ps5-hide-info").change(function() {
+    if ($(this).is(':checked')) {
+      $(".ps5-info").fadeOut("slow")
+    }
+  })
+
+  // iPhone radio button show/hide
+  $("#iphone-show-img").change(function() {
+    if ($(this).is(':checked')) {
+      $("#iphone-img").fadeIn("slow")
+    }
+  })
+  $("#iphone-hide-img").change(function() {
+    if ($(this).is(':checked')) {
+      $("#iphone-img").fadeOut("slow")
+    }
+  })
+  $("#iphone-show-info").change(function() {
+    if ($(this).is(':checked')) {
+      $(".iphone-info").fadeIn("slow")
+    }
+  })
+  $("#iphone-hide-info").change(function() {
+    if ($(this).is(':checked')) {
+      $(".iphone-info").fadeOut("slow")
+    }
+  })
+
+  // Extra animation
+  $("table").animate({fontSize: '20px'})
+</script>
+</html>
