@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500&display=swap');
+
+* {
+    font-family: 'Montserrat', sans-serif;
+    
+}
+body {
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+h2 {
+    margin-top: 3%;
+    font-weight: 500;
+    text-align: center;
+    line-height: 50px;
+}
+
+p {
+    font-weight: 300;
+    font-size: 16px!important;
+}
+
+#header p {
+    line-height: 80px;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+}
+
+.formDiv {
+    width: 50%;
+    display: inline-block;
+    height: 100%;
+    font-size: large;
+}
+.formDiv input, .formDiv select {
+    font-size: medium;
+}
+.formDiv label {
+    display:block;
+    position:relative;
+    padding-left: 130px;
+    padding-bottom:20px;
+}
+
+.formDiv label > span {
+    position:absolute;
+    left:0;
+}
+#buttonDiv input:last-child{
+    float: right;
+}
+
+#clearButton, input[type=submit] {
+    border: 1px solid black;
+    padding: 8px;
+    background-color: white;
+    color: black;
+    font-size: 16px!important;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 8%;
+}
+
+input[type=submit] {
+    background-color: #0444aa;
+    border-color: #0444aa;
+    color: white;
+}
+ 
+input[type=submit]:hover {
+    background-color: #126f4d;
+    border-color: #126f4d;
+    color: white;
+}
+
+#clearButton {
+    border-color: #0444aa;
+    color: #0444aa;
+}
+
+#clearButton:hover {
+    border-color:#f44336;
+    background: #f44336;
+    color: white;
+}
+
+#tableDiv {
+    flex-grow: 1;
+} 
+
+#tableDiv table  {
+    table-layout: fixed;
+    width: 85%;
+    border-collapse:collapse;
+    float: right;
+    padding: 5px;
+}
+
+#tableDiv h6 {
+    margin: auto;
+    padding-left: 50%;
+    padding-bottom: 20px;
+    font-size: large;
+}
+
+table, th, td {
+    border: 1px solid rgba(105, 104, 104, 0.712);
+    text-align: center;
+    padding: 5px;
+}
