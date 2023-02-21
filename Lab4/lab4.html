@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <big>CPS630 Lab 4: Browser Detection</big>
+</head>
+<body onload="fnBrowserDetect()">
+  <h1></h1>
+	<script>
+		function fnBrowserDetect(){
+         //as stated in the lab description, utilizing navigator.userAgent to access browser information, declaring empty variable to store string of browser being used       
+         let userAgent = navigator.userAgent;
+         let browser;
+         //utilizing conditional statements and matching to the three main browser types to find out what browser is being used and then updating the browser variable
+         if(userAgent.match(/firefox|fxios/i))
+         {
+            browser = "Mozilla Firefox";
+         }
+         else if(userAgent.match(/chrome|chromium|crios/i))
+         {
+            browser = "Google Chrome";
+         }  
+         else if(userAgent.match(/safari/i))
+         {
+            browser = "Apple Safari";
+         }
+         else
+         {
+            browser = "Unique";
+         }
+         //Displaying to the user what browser is being used by outputting the browser variable within html which will execute as soon as the page loads
+         document.querySelector("h1").innerText="Browser being used: "+ browser;
+		 }
+	</script>
+</body>
+</html>
