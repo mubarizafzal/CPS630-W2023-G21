@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <h3>George Vari Engineering and Computing Centre, Toronto</h3>
+    <!--
+      <img src="https://maps.googleapis.com/maps/api/staticmap?center=43.6578402,-79.3772967&zoom=18&size=800x600&sensor=false&key=AIzaSyDW0131G40rPrQ4xRh80sT9FwMm8vLgZ6w">
+    -->
+      <div id="map" style="width: 800px; height: 600px"></div>
+    <script>
+      function loadMap() {
+        
+        // Location object. The exact key names of lat and lng are important.
+        let location = {lat: 43.6578402, lng: -79.3772967};
+        
+        // The map will render to fit the element provided, which is the div with the id map.
+        let myMap = new google.maps.Map(document.getElementById("map"), {zoom: 17, center: location});
+        
+        // Marker to show the location we specify on the map.
+        let myMarker = new google.maps.Marker({position: location, map: myMap})
+
+      }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDW0131G40rPrQ4xRh80sT9FwMm8vLgZ6w&callback=loadMap"></script>
+  </body>
+</html>
