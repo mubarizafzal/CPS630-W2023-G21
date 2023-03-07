@@ -12,11 +12,29 @@
         // Location object. The exact key names of lat and lng are important.
         let location = {lat: 43.6578402, lng: -79.3772967};
         
+        // Second location object.
+        let location2 = {lat: 43.658113, lng: -79.378657};
+        
         // The map will render to fit the element provided, which is the div with the id map.
         let myMap = new google.maps.Map(document.getElementById("map"), {zoom: 17, center: location});
         
         // Marker to show the location we specify on the map.
-        let myMarker = new google.maps.Marker({position: location, map: myMap})
+        let myMarker = new google.maps.Marker({position: location, map: myMap});
+
+        // First Info Window
+        let iw = new google.maps.InfoWindow({content: "<h3> Eng Building! </h3>", });
+        myMarker.addListener("click", function () {
+          iw.open(myMap, myMarker)
+        });
+
+        // Second marker
+        let myMarker2 = new google.maps.Marker({position: location2, map: myMap});
+
+        // Second Info Window
+        let iw2 = new google.maps.InfoWindow({content: "<h3> Kerr Hall! </h3>", });
+        myMarker2.addListener("click", function () {
+          iw2.open(myMap, myMarker2)
+        });
 
       }
     </script>
