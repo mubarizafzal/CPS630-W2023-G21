@@ -38,29 +38,115 @@
         text-align: center;
       }
     </style>
+    
   </head>
   <body>
     <header>
       <h1>Welcome to My Webpage</h1>
     </header>
     
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        var dragSrcEl = null;
+        
+        function handleDragStart(e) {
+            this.style.opacity = '0.4';
+            
+            dragSrcEl = this;
+            
+            e.dataTransfer.effectAllowed = 'move';
+            e.dataTransfer.setData('text/html', this.innerHTML);
+        }
+        
+        function handleDragOver(e) {
+            if (e.preventDefault) {
+                e.preventDefault();
+            }
+            
+            e.dataTransfer.dropEffect = 'move';    
+            return false;
+        }
+        
+        function handleDragEnter(e) {
+            this.classList.add('over');
+        }
+        
+        function handleDragLeave(e) {
+            this.classList.remove('over');
+        }
+        
+        function handleDrop(e) {
+            if (e.stopPropagation) {
+                e.stopPropagation();
+            }
+            
+            if (dragSrcEl != this) {
+                dragSrcEl.innerHTML = this.innerHTML;
+                this.innerHTML = e.dataTransfer.getData('text/html');
+            }
+            
+            return false;
+        }
+        
+        function handleDragEnd(e) {
+            this.style.opacity = '1';
+            items.forEach(function (item) {
+                item.classList.remove('over');
+            });
+        }
+        
+        let items = document.querySelectorAll('.container .box');
+        items.forEach(function(item) {
+            item.addEventListener('dragstart', handleDragStart, false);
+            item.addEventListener('dragenter', handleDragEnter, false);
+            item.addEventListener('dragover', handleDragOver, false);
+            item.addEventListener('dragleave', handleDragLeave, false);
+            item.addEventListener('drop', handleDrop, false);
+            item.addEventListener('dragend', handleDragEnd, false);
+        });
+        let items2 = document.querySelectorAll('.container2 .box');
+        items2.forEach(function(item) {
+            item2.addEventListener('dragstart', handleDragStart, false);
+            item2.addEventListener('dragenter', handleDragEnter, false);
+            item2.addEventListener('dragover', handleDragOver, false);
+            item2.addEventListener('dragleave', handleDragLeave, false);
+            item2.addEventListener('drop', handleDrop, false);
+            item2.addEventListener('dragend', handleDragEnd, false);
+        });
+        
+    });
+    </script>
 
-    <!--nav bar-->
-    <nav>
-      <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Services</a></li>
-          <li><a href="#">Shopping Cart</a></li>
-          <li><a href="#">System Logo</a></li>
-          <li><a href="#">About Us</a></li>
-          <li><a href="#">Contact Us</a></li>
-          <li><a href="#">Sign Up</a></li>
-          <li><a href="login.html">Sign In</a></li>
-          <li><a href="#">Reviews</a></li>
-      </ul>
-  </nav>
-    
+<div class="sidebar">
+  <header>
+      <h1>Your Cart</h1>
+  </header>
+  <div class="container2">
+<div class="product box" draggable="true">
+  <img src="product1.jpg" alt="Product 1">
+  <h3>Product 1</h3>
+  <p>Price: $19.99</p>
+  <button>Add to Cart</button>
+</div>
+      </div>
+</div>
 
+
+<!--nav bar-->
+<nav>
+  <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Services</a></li>
+      <li><a href="#">Shopping Cart</a></li>
+      <li><a href="#">System Logo</a></li>
+      <li><a href="#">About Us</a></li>
+      <li><a href="#">Contact Us</a></li>
+      <li><a href="#">Sign Up</a></li>
+      <li><a href="login.html">Sign In</a></li>
+      <li><a href="#">Reviews</a></li>
+  </ul>
+</nav>
 
 <!--banner components and code-->
   <div class="banner-moving" id="banner-move">
