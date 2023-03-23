@@ -4,13 +4,13 @@
 
 	if(isset($_POST['signup'])){
 		$name = $_POST['name'];
-        $phone = $_POST['telephone'];
+    $telephone = $_POST['telephone'];
 		$email = $_POST['email'];
 		$username = $_POST['username'];
 		$password = $_POST['password'];
 		$repassword = $_POST['repassword'];
-        $address = $_POST['address'];
-        $citycode = $_POST['citycode'];
+    $address = $_POST['address'];
+    $citycode = $_POST['citycode'];
 
 		$_SESSION['name'] = $name;
 		$_SESSION['username'] = $username;
@@ -32,49 +32,45 @@
 			}
 			else{
 				$now = date('Y-m-d');
-				$password = password_hash($password, PASSWORD_DEFAULT);
+				//$password = password_hash($password, PASSWORD_DEFAULT); // I removed this because it didn't make sense with verify.php
+
+        //$stmt = $conn->prepare("SELECT COUNT(*) AS numrows FROM user");
+        // If we want to implement the registration funcitonality, we also need to provide an id to the
+        // INSERT command
 
 				try{
 					$stmt = $conn->prepare("INSERT INTO user (username, password, name, telephone, email, address, citycode) VALUES (:username, :password, :name, :telephone, :email, :address, :citycode)");
-					$stmt->execute(['username'=>$username, 'password'=>$password, 'name'=>$name, 'telephone'=>$telephone, 'email'=>$email, 'address'=>$address, 'citycode'=>$citycode]);
-					$userid = $conn->lastInsertId();
+          $stmt->execute(['username'=>$username, 'password'=>$password, 'name'=>$name, 'telephone'=>$telephone, 'email'=>$email, 'address'=>$address, 'citycode'=>$citycode]);
+          $userid = $conn->lastInsertId();
 
 					$message = "
 						<h2>Thank you for Registering.</h2>
 						<p>Your Account:</p>
 						<p>Email: ".$email."</p>
-						<p>Password: ".$_POST['password']."</p>
 					";
 
 
-				        unset($_SESSION['firstname']);
-				        unset($_SESSION['lastname']);
-				        unset($_SESSION['email']);
+          unset($_SESSION['firstname']);
+          unset($_SESSION['lastname']);
+          unset($_SESSION['email']);
 
-				        $_SESSION['success'] = 'Account created. Check your email to activate.';
-				        header('location: signup.php');
+          $_SESSION['success'] = 'Account created. Check your email to activate.';
+          header('location: signup.php');
 
-				    } 
-				    catch (Exception $e) {
-				        $_SESSION['error'] = 'Message could not be sent. Mailer Error: '.$mail->ErrorInfo;
-				        header('location: signup.php');
-				    }
+        } 
+        catch (Exception $e) {
+            $_SESSION['error'] = 'An error occurred when trying to create your account.';
+            header('location: signup.php');
+        }
 
 
-				}
-				catch(PDOException $e){
-					$_SESSION['error'] = $e->getMessage();
-					header('location: register.php');
-				}
+      }
+      $pdo->close();
 
-				$pdo->close();
+    }
 
-			}
-
-		}
-
-	}
-	else{
+  }
+	else {
 		$_SESSION['error'] = 'Fill up signup form first';
 		header('location: signup.php');
 	}

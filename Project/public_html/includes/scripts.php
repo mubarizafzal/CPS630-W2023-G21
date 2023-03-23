@@ -5,76 +5,73 @@
 
 <!-- Drag & Drop -->
 <script>
-    document.addEventListener('DOMContentLoaded', (event) => {
-        var dragSrcEl = null;
-        
-        function handleDragStart(e) {
-            this.style.opacity = '0.4';
-            
-            dragSrcEl = this;
-            
-            e.dataTransfer.effectAllowed = 'move';
-            e.dataTransfer.setData('text/html', this.innerHTML);
+document.addEventListener('DOMContentLoaded', (event) => {
+  var dragSrcEl = null;
+      
+  function handleDragStart(e) {
+    this.style.opacity = '0.4';
+    
+    dragSrcEl = this;
+  }
+      
+  function handleDragEnd(e) {
+    this.style.opacity = '1';
+
+    dragSrcEl = null
+  }
+
+  function handleDragOver(e) {
+    if (e.preventDefault) {
+      e.preventDefault();
+    }
+    
+    return false;
+  }
+  
+  function handleDrop(e) {
+    if (e.stopPropagation) {
+      e.stopPropagation();
+    }
+
+    if (dragSrcEl) {
+      id = dragSrcEl.id.split('_')[1]
+
+      $.ajax({
+        type: 'POST',
+        url: 'cart_add.php',
+        data: `quantity=1&id=${id}`,
+        dataType: 'json',
+        success: function(response){
+          $('#callout').show();
+          $('.message').html(response.message);
+          if(response.error){
+            $('#callout').removeClass('callout-success').addClass('callout-danger');
+          }
+          else{
+          $('#callout').removeClass('callout-danger').addClass('callout-success');
+          getCart();
+          }
         }
-        
-        function handleDragOver(e) {
-            if (e.preventDefault) {
-                e.preventDefault();
-            }
-            
-            e.dataTransfer.dropEffect = 'move';    
-            return false;
-        }
-        
-        function handleDragEnter(e) {
-            this.classList.add('over');
-        }
-        
-        function handleDragLeave(e) {
-            this.classList.remove('over');
-        }
-        
-        function handleDrop(e) {
-            if (e.stopPropagation) {
-                e.stopPropagation();
-            }
-            
-            if (dragSrcEl != this) {
-                dragSrcEl.innerHTML = this.innerHTML;
-                this.innerHTML = e.dataTransfer.getData('text/html');
-            }
-            
-            return false;
-        }
-        
-        function handleDragEnd(e) {
-            this.style.opacity = '1';
-            items.forEach(function (item) {
-                item.classList.remove('over');
-            });
-        }
-        
-        let items = document.querySelectorAll('.container .box');
-        items.forEach(function(item) {
-            item.addEventListener('dragstart', handleDragStart, false);
-            item.addEventListener('dragenter', handleDragEnter, false);
-            item.addEventListener('dragover', handleDragOver, false);
-            item.addEventListener('dragleave', handleDragLeave, false);
-            item.addEventListener('drop', handleDrop, false);
-            item.addEventListener('dragend', handleDragEnd, false);
-        });
-        let items2 = document.querySelectorAll('.container2 .box');
-        items2.forEach(function(item) {
-            item2.addEventListener('dragstart', handleDragStart, false);
-            item2.addEventListener('dragenter', handleDragEnter, false);
-            item2.addEventListener('dragover', handleDragOver, false);
-            item2.addEventListener('dragleave', handleDragLeave, false);
-            item2.addEventListener('drop', handleDrop, false);
-            item2.addEventListener('dragend', handleDragEnd, false);
-        });
-        
-    });
-    </script>
+      });
+    }
+
+    return false;
+  }
+
+  let items = document.querySelectorAll('.container .box');
+  items.forEach(function(item) {
+    item.addEventListener('dragstart', handleDragStart, false);
+    item.addEventListener('dragend', handleDragEnd, false);
+  });
+    
+
+  let shoppingCart = document.getElementById('shopping_cart')
+
+  shoppingCart.addEventListener('dragover', handleDragOver, false)
+  shoppingCart.addEventListener('drop', handleDrop, false)
+
+});
+</script>
 
 <!-- Custom Scripts -->
 <script>
@@ -114,6 +111,19 @@ $(function(){
   $(document).on('click', '.close', function(){
   	$('#callout').hide();
   });
+
+  $(".branch").on('click', function() {
+    var newBranch = this.innerHTML
+    $.ajax({
+  		type: 'POST',
+  		url: 'select_branch.php',
+  		data: `branch=${newBranch}`,
+  		dataType: 'json',
+  		success: function(response){
+        $("#selected_branch").html(newBranch)
+  		}
+  	});
+  })
 
 });
 

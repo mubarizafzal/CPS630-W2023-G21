@@ -1,40 +1,46 @@
 <header class="main-header">
   <nav class="navbar navbar-static-top">
     <div class="navbar-header">
-        <a href="index.php" class="navbar-brand"><b>E-Commerce </b>Site</a>
+      <a href="index.php" class="navbar-brand" style="color: #58a36c">
+        <img src="images/logo.png" style="width: 40px; height: auto; display: inline;"/>
+        <b>Green Delivery</b> E-Commerce
+      </a>
       </div>
     <!-- Navigation options -->
     <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
         <ul class="nav navbar-nav">
             <li><a href="index.php">Home</a></li>
-            <li><a href="#">System Logo</a></li>
             <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Category <span class="caret"></span></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Departments <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
-              <?php
-             
-                $conn = $pdo->open();
-                try{
-                  $stmt = $conn->prepare("SELECT * FROM category");
-                  $stmt->execute();
-                  foreach($stmt as $row){
-                    echo "
-                      <li><a href='category.php?category=".$row['genre']."'>".$row['name']."</a></li>
-                    ";                  
-                  }
-                }
-                catch(PDOException $e){
-                  echo "A connection cannot be established: " . $e->getMessage();
-                }
+              <li>
+                <a href="#" class="dropdown-item" style="display: flex; justify-content: space-between"><span>Furniture</span><span>⯈</span></a>
+                <ul class="dropdown-menu dropdown-submenu">
+                  <?php
+                
+                    $conn = $pdo->open();
+                    try{
+                      $stmt = $conn->prepare("SELECT * FROM category");
+                      $stmt->execute();
+                      foreach($stmt as $row){
+                        echo "
+                          <li><a href='category.php?category=".$row['genre']."'>".$row['name']."</a></li>
+                        ";
+                      }
+                    }
+                    catch(PDOException $e){
+                      echo "A connection cannot be established: " . $e->getMessage();
+                    }
 
-                $pdo->close();
+                    $pdo->close();
 
-              ?>
+                  ?>
+                </ul>
+              </li>
             </ul>
           </li>
             <li><a href="about.php">About Us</a></li>
             <li><a href="contact.php">Contact Us</a></li>
-            <li><a href="#">Types of Services</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">DB Maintain <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
@@ -71,22 +77,56 @@
                 <ul class="menu" id="cart_menu">
                 </ul>
               </li>
-              <li class="footer"><a href="cart_view.php">Go to Cart</a></li>
+              <li class="footer"><a href="cart_view.php"><b>Go to Cart</b></a></li>
+            </ul>
+          </li>
+          <li class="dropdown messages-menu">
+            <!-- Menu toggle button -->
+            <a href="#" class="dropdown-toggle" id="selected_branch" data-toggle="dropdown">
+              <i class="fa fa-truck"></i>
+              <?php 
+                if(isset($_SESSION['branch'])) {
+                  echo "<span id='selected-branch'>".$_SESSION['branch']."</span>";
+                } else {
+                  echo "<span id='selected-branch'>Select a branch..</span>";
+                }
+              ?>
+            </a>
+            <ul class="dropdown-menu">
+              <?php
+                $conn = $pdo->open();
+
+                try {
+                  $stmt = $conn->prepare("SELECT DISTINCT name FROM branch");
+                  $stmt->execute();
+
+                  foreach($stmt as $row){
+                    echo "
+                      <li><a href='#' class='dropdown-item branch'>".$row['name']."</a></li>
+                    ";
+                  }
+
+                } catch(PDOException $e) {
+                  echo "A connection cannot be established: " . $e->getMessage();
+                }
+
+                $pdo->close();
+              ?>
             </ul>
           </li>
           <?php
             if(isset($_SESSION['user'])){
-              $image = (!empty($user['photo'])) ? 'images/'.$user['photo'] : 'images/profile.jpg';
+              $image = (!empty($user['photo'])) ? 'images/'.$user['photo'] : 'images/profile.png';
               echo '
                 <li class="dropdown user user-menu">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    <img src="'.$image.'" class="user-image" alt="User Image">
+                    <img src="'.$image.'" class="user-image" alt="User Image" width="20px">
                     <span class="hidden-xs">'.$user['firstname'].' '.$user['lastname'].'</span>
                   </a>
                   <ul class="dropdown-menu">
                     <!-- User image -->
                     <li class="user-header">
-                      <img src="'.$image.'" class="img-circle" alt="User Image">
+                      <img src="'.$image.'" class="img-circle" alt="User Image" style="width: 35px; margin-left: auto; margin-right: auto; display: block">
 
                       <p>
                         '.$user['firstname'].' '.$user['lastname'].'
@@ -98,7 +138,7 @@
                         <a href="profile.php" class="btn btn-default btn-flat">Profile</a>
                       </div>
                       <div class="pull-right">
-                        <a href="logout.php" class="btn btn-default btn-flat">Sign out</a>
+                        <a href="signout.php" class="btn btn-default btn-flat">Sign out</a>
                       </div>
                     </li>
                   </ul>
