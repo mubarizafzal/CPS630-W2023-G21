@@ -35,11 +35,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     if (dragSrcEl) {
       id = dragSrcEl.id.split('_')[1]
+      price = dragSrcEl.id.split('_')[2]
 
       $.ajax({
         type: 'POST',
         url: 'cart_add.php',
-        data: `quantity=1&id=${id}`,
+        data: `quantity=1&id=${id}&price=${price}`,
         dataType: 'json',
         success: function(response){
           $('#callout').show();
@@ -120,7 +121,7 @@ $(function(){
   		data: `branch=${newBranch}`,
   		dataType: 'json',
   		success: function(response){
-        $("#selected_branch").html(newBranch)
+        $("#selected-branch").html(newBranch)
   		}
   	});
   })

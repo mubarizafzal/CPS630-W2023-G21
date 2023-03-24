@@ -50,6 +50,7 @@
 							                </button>
 							            </span>
 							            <input type="hidden" value="<?php echo $item['itemid']; ?>" name="id">
+                          <input type="hidden" value="<?php echo $item['price']; ?>" name="price">
 							        </div>
 			            			<button type="submit" class="btn btn-primary btn-lg btn-flat"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
 			            		</div>

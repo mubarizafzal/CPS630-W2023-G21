@@ -1,21 +1,23 @@
 <?php
-    include 'includes/session.php';
+  include 'includes/session.php';
 
-    $conn = $pdo->open();
+  $conn = $pdo->open();
 
 	$output = array('error'=>false);
 
 	$id = $_POST['id'];
 	$quantity = $_POST['quantity'];
+  $price = $_POST['price'];
+  $total = intval($price) * intval($quantity);
 
 	if(isset($_SESSION['user'])){
-		$stmt = $conn->prepare("SELECT *, COUNT(*) AS numrows FROM shopping_cart WHERE user_id=:user_id AND item_id=:item_id");
+		$stmt = $conn->prepare("SELECT *, COUNT(*) AS numrows FROM shopping_cart WHERE user_id=:user_id AND item_id=:item_id GROUP BY id");
 		$stmt->execute(['user_id'=>$user['id'], 'item_id'=>$id]);
 		$row = $stmt->fetch();
 		if($row['numrows'] < 1){
 			try{
-				$stmt = $conn->prepare("INSERT INTO shopping_cart (user_id, item_id, quantity) VALUES (:user_id, :item_id, :quantity)");
-				$stmt->execute(['user_id'=>$user['id'], 'item_id'=>$id, 'quantity'=>$quantity]);
+				$stmt = $conn->prepare("INSERT INTO shopping_cart (user_id, item_id, quantity, total) VALUES (:user_id, :item_id, :quantity, :total)");
+				$stmt->execute(['user_id'=>$user['id'], 'item_id'=>$id, 'quantity'=>$quantity, 'total'=>$total]);
 				$output['message'] = 'Item added to cart';
 				
 			}
@@ -47,6 +49,7 @@
 		else{
 			$data['item_id'] = $id;
 			$data['quantity'] = $quantity;
+      $data['total'] = $total;
 
 			if(array_push($_SESSION['shopping_cart'], $data)){
 				$output['message'] = 'Item added to shopping cart';

@@ -44,7 +44,7 @@
 	       						if($inc == 1) echo "<div class='row'>";
 	       						echo "
 	       							<div class='col-sm-4'>
-	       								<div class='box box-solid' id='".$row['item_name'].'_'.$row['id']."'>
+	       								<div class='box box-solid' id='".$row['item_name'].'_'.$row['id'].'_'.$row['price']."'>
 		       								<div draggable='true' class='box-body prod-body'>
 		       									<img src='".$image."' width='100%' height='230px' class='thumbnail'>
 		       									<h5><a href='product.php?item=".$row['code']."'>".$row['item_name']."</a></h5>

@@ -82,7 +82,7 @@
           </li>
           <li class="dropdown messages-menu">
             <!-- Menu toggle button -->
-            <a href="#" class="dropdown-toggle" id="selected_branch" data-toggle="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-truck"></i>
               <?php 
                 if(isset($_SESSION['branch'])) {

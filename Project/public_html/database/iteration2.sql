@@ -9,7 +9,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `user`
 --
 CREATE TABLE IF NOT EXISTS `user` (
-`id` int(11) NOT NULL,
+`id` int(11) AUTO_INCREMENT NOT NULL,
   `username` text NOT NULL,
   `password` text NOT NULL,
   `name` text NOT NULL,
@@ -17,8 +17,9 @@ CREATE TABLE IF NOT EXISTS `user` (
   `email` text NOT NULL,
   `address` text NOT NULL,
   `citycode` text NOT NULL,
-  `balance` float NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+  `balance` float NOT NULL DEFAULT 0,
+  PRIMARY KEY(id)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Insert data in table 'user'
 
@@ -31,7 +32,7 @@ INSERT INTO `user` (`id`, `username`, `password`, `name`, `telephone`, `email`, 
 --
 
 CREATE TABLE IF NOT EXISTS `order_placed` (
-`id` int(11) NOT NULL,
+  `id` int(11) AUTO_INCREMENT NOT NULL,
   `user_id` int(11) NOT NULL,
   `shopping_cart_id` int(11) NOT NULL,
   `item_id` int(11) NOT NULL,
@@ -39,8 +40,9 @@ CREATE TABLE IF NOT EXISTS `order_placed` (
   `date_issued` date NOT NULL,
   `date_received` date NOT NULL,
   `total` int(11) NOT NULL,
-  `pay_code` varchar(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+  `pay_code` varchar(11) NOT NULL,
+  PRIMARY KEY(id)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Insert data in table 'order_placed'
 
@@ -55,20 +57,21 @@ INSERT INTO `order_placed` (`id`, `user_id`, `shopping_cart_id`, `item_id`, `tri
 --
 
 CREATE TABLE IF NOT EXISTS `shopping_cart` (
-`id` int(11) NOT NULL,
+  `id` int(11) AUTO_INCREMENT NOT NULL,
   `user_id` int(11) NOT NULL,
   `item_id` int(11) NOT NULL,
   `quantity` int(11) NOT NULL,
   `total` int(11) NOT NULL,
-  `store_code` varchar(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+  `store_code` varchar(11),
+  PRIMARY KEY(id)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Insert data in table 'shopping_cart'
 
 INSERT INTO `shopping_cart` (`id`, `user_id`, `item_id`, `quantity`, `total`, `store_code`) VALUES
-(1, 1, 1, 3, 928, 'STORE01'),
-(2, 2, 2, 2, 481, 'STORE02'),
-(3, 3, 3, 3, 197, 'STORE03');
+(1, 1, 1, 3, 928, NULL),
+(2, 2, 2, 2, 481, NULL),
+(3, 3, 3, 3, 197, NULL);
 
 -- --------------------------------------------------------
 
@@ -77,10 +80,11 @@ INSERT INTO `shopping_cart` (`id`, `user_id`, `item_id`, `quantity`, `total`, `s
 --
 
 CREATE TABLE IF NOT EXISTS `category` (
-`id` int(11) NOT NULL,
+  `id` int(11) AUTO_INCREMENT NOT NULL,
   `name` varchar(100) NOT NULL,
-  `genre` varchar(100) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+  `genre` varchar(100) NOT NULL,
+  PRIMARY KEY(id)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Insert data into category
 INSERT INTO `category` (`id`, `name`, `genre`) VALUES
@@ -96,7 +100,7 @@ INSERT INTO `category` (`id`, `name`, `genre`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `items` (
-`id` int(11) NOT NULL,
+  `id` int(11) AUTO_INCREMENT NOT NULL,
   `category_id` int(11) NOT NULL,
   `item_name` text NOT NULL,
   `keyword` varchar(200) NOT NULL,
@@ -106,8 +110,9 @@ CREATE TABLE IF NOT EXISTS `items` (
   `description` text NOT NULL,
   `code` varchar(200) NOT NULL,
   `photo` varchar(200) NOT NULL,
-  `counter` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=latin1;
+  `counter` int(11) NOT NULL,
+  PRIMARY KEY(id)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Insert data in table 'items'
 INSERT INTO `items` (`id`, `category_id`, `item_name`, `keyword`, `dept_code`, `made_in`, `price`, `description`, `code`, `photo`, `counter`) VALUES
@@ -137,13 +142,14 @@ INSERT INTO `items` (`id`, `category_id`, `item_name`, `keyword`, `dept_code`, `
 --
 
 CREATE TABLE IF NOT EXISTS `branch` (
-`id` int(11) NOT NULL,
+  `id` int(11) AUTO_INCREMENT NOT NULL,
   `name` text NOT NULL,
   `address` text NOT NULL,
   `day_of_week` INT NOT NULL,
   `open_time` time NOT NULL,
-  `close_time` time NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+  `close_time` time NOT NULL,
+  PRIMARY KEY(id, day_of_week)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Insert data into branch
 INSERT INTO `branch` (`id`, `name`, `address`, `day_of_week`, `open_time`, `close_time`) VALUES
@@ -168,14 +174,15 @@ INSERT INTO `branch` (`id`, `name`, `address`, `day_of_week`, `open_time`, `clos
 --
 
 CREATE TABLE IF NOT EXISTS `trip` (
-`id` int(11) NOT NULL,
+  `id` int(11) AUTO_INCREMENT NOT NULL,
   `branch_id` int(11) NOT NULL,
   `truck_id` int(11) NOT NULL,
   `source_code` varchar(11) NOT NULL,
   `dest_code` varchar(11) NOT NULL,
   `distance_km` int(11) NOT NULL,
-  `price` double NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=latin1;
+  `price` double NOT NULL,
+  PRIMARY KEY(id)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Insert data into trip
 
@@ -190,11 +197,12 @@ INSERT INTO `trip` (`id`, `truck_id`, `source_code`, `dest_code`, `distance_km`,
 -- Table structure for table `truck`
 --
 CREATE TABLE IF NOT EXISTS `truck` (
-`id` int(11) NOT NULL,
+  `id` int(11) AUTO_INCREMENT NOT NULL,
   `trip_id` int(11) NOT NULL,
   `item_name` text NOT NULL,
-  `avail_code` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=latin1;
+  `avail_code` int(11) NOT NULL,
+  PRIMARY KEY(id)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Insert data into truck
 
@@ -202,26 +210,3 @@ INSERT INTO `truck` (`id`, `item_name`, `avail_code`) VALUES
 (1, 101, 123),
 (2, 202, 456),
 (3, 303, 789);
-
--- --------------------------------------------------------
-
-ALTER TABLE `user`
- ADD PRIMARY KEY (`id`);
-
-ALTER TABLE `order_placed`
- ADD PRIMARY KEY (`id`);
-
-ALTER TABLE `shopping_cart`
- ADD PRIMARY KEY (`id`);
-
-ALTER TABLE `category`
- ADD PRIMARY KEY (`id`);
-
-ALTER TABLE `items`
- ADD PRIMARY KEY (`id`);
-
- ALTER TABLE `truck`
- ADD PRIMARY KEY (`id`);
-
-ALTER TABLE `trip`
- ADD PRIMARY KEY (`id`);

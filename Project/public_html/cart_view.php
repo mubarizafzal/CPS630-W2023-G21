@@ -36,7 +36,7 @@
 	        			}
 	        			else{
 	        				echo "
-	        					<h4>You need to <a href='login.php'>Login</a> to checkout.</h4>
+	        					<h4>You need to <a href='signin.php'>Login</a> to checkout.</h4>
 	        				";
 	        			}
 	        		?>
