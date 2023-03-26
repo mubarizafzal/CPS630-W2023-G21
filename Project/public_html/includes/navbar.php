@@ -127,7 +127,7 @@
                   ?>
                 </ul>
               </li>
-              <?php if (isset($_SESSION["user"])) {
+              <?php if (($_SESSION["user"]) == true) {
                   $image = !empty($user["photo"])
                       ? "images/" . $user["photo"]
                       : "images/profile.png";

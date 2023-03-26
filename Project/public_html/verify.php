@@ -21,7 +21,7 @@
 						$_SESSION['error'] = 'Incorrect Password';
 					}
 					
-					if($row['admin']) $_SESSION['admin'] = $row['id'];
+					if($row['admin'] == true) $_SESSION['admin'] = true;
 				}
 				else{
 					$_SESSION['error'] = 'Account not activated.';
