@@ -15,16 +15,13 @@
 			if($row['numrows'] > 0){
 				if(True || $row['status']){ // what is status? temp fix to make login work
 					if(password_verify($password, password_hash($row['password'], PASSWORD_DEFAULT))){
-						if($row['type']){ // what is type?
-							$_SESSION['admin'] = $row['id'];
-						}
-						else{
-							$_SESSION['user'] = $row['id'];
-						}
+						$_SESSION['user'] = $row['id'];
 					}
 					else{
 						$_SESSION['error'] = 'Incorrect Password';
 					}
+					
+					if($row['admin']) $_SESSION['admin'] = $row['id'];
 				}
 				else{
 					$_SESSION['error'] = 'Account not activated.';
