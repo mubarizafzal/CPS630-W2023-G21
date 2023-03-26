@@ -11,13 +11,33 @@
 	    <section class="content">
 	        <div class="row">
 	        	<div class="col-sm-9">
-                <h1 class="page-header">Contact Points</h1>
+                <h1 class="page-header">Contact Information</h1>
                 <ul>
-                    <li>Hodo Abdirizak <a href="mailto:hodo.abdirizak@torontomu.ca">hodo.abdirizak@torontomu.ca</a></li>
-                    <li>Kevin Ahn <a href="mailto:tahn@torontomu.ca">tahn@torontomu.ca</a></li>
-                    <li>Marco Bozic <a href="mailto:marco.bozic@torontomu.ca">marco.bozic@torontomu.ca</a></li>
-                    <li>Mubariz Afzal <a href="mailto:mubariz.afzal@torontomu.ca">mubariz.afzal@torontomu.ca</a></li>
-                    <li>Asgar Ayman <a href="mailto:asgar.ayman@torontomu.ca">asgar.ayman@torontomu.ca</a></li>
+                   <p>Contact Us<br><br>
+
+At Green Delivery E-commerce, we're always here to help and answer any questions you may have. Feel free to get in touch with our team members via email, and we'll get back to you as soon as possible. Your feedback and inquiries are important to us!
+<br><br>
+Hodo Abdirizak<br>
+Lead UI/UX Designer<br>
+Email: hodo.abdirizak@torontomu.ca<br>
+<br>
+Kevin Ahn<br>
+Full-Stack Developer<br>
+Email: tahn@torontomu.ca<br>
+<br>
+Marco Bozic<br>
+Software Engineer (Backend)<br>
+Email: marco.bozic@torontomu.ca<br>
+<br>
+Mubariz Afzal<br>
+Software Engineer (Frontend)<br>
+Email: mubariz.afzal@torontomu.ca<br>
+<br>
+Asgar Ayman<br>
+Database Management Expert<br>
+Email: asgar.ayman@torontomu.ca<br>
+<br>
+For general inquiries, you can also reach out to our team at support@greendeliveryecommerce.com, and we'll make sure to direct your message to the appropriate team member. We look forward to hearing from you!</p>
                 </ul> 
                 </div>
 	        </div>
