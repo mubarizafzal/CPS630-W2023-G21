@@ -126,6 +126,22 @@ $(function(){
   	});
   })
 
+  $('#reviewForm').submit(function(e){
+  	e.preventDefault();
+  	var product = $(this).serialize();
+    console.log(product)
+  	$.ajax({
+  		type: 'POST',
+  		url: 'review_add.php',
+  		data: product,
+  		dataType: 'json',
+  		success: function(response){
+        location.reload()
+  		}
+  	});
+  });
+
+
 });
 
 function getCart(){
