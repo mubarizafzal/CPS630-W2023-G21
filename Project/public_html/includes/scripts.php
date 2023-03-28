@@ -68,8 +68,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
   let shoppingCart = document.getElementById('shopping_cart')
 
-  shoppingCart.addEventListener('dragover', handleDragOver, false)
-  shoppingCart.addEventListener('drop', handleDrop, false)
+  if (shoppingCart) {
+    shoppingCart.addEventListener('dragover', handleDragOver, false)
+    shoppingCart.addEventListener('drop', handleDrop, false)
+  }
 
 });
 </script>
@@ -129,7 +131,6 @@ $(function(){
   $('#reviewForm').submit(function(e){
   	e.preventDefault();
   	var product = $(this).serialize();
-    console.log(product)
   	$.ajax({
   		type: 'POST',
   		url: 'review_add.php',
@@ -141,6 +142,20 @@ $(function(){
   	});
   });
 
+  $('#checkoutForm').submit(function(e){
+  	e.preventDefault();
+  	var product = $(this).serialize();
+
+    $.ajax({
+  		type: 'POST',
+  		url: 'save_address.php',
+  		data: product,
+  		dataType: 'json',
+  		success: function(response){
+        window.location.href = "invoice.php"
+  		}
+  	});
+  });
 
 });
 

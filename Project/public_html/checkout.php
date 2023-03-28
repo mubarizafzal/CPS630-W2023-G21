@@ -43,13 +43,14 @@
         <section>
             <h3>1. Select a branch location:</h3>
             <div id="checkout_info">
-            <select name="branch_selected">
+            <select name="branch_selected" id="branch_selected" onchange="setBranchCoordinates()">
+            <option selected disabled>Select a branch:</option>
             <?php 
             $conn = $pdo->open();
             try{
-                $stmt = $conn->query("SELECT DISTINCT name FROM branch");
+                $stmt = $conn->query("SELECT DISTINCT name, address FROM branch");
                 while ($row = $stmt->fetch()) {
-                    echo "<option value=\"branch1\">" . $row['name'] . "</option>";
+                    echo "<option value='" . $row['address'] . "'>" . $row['name'] . "</option>";
                 }
             }
             catch(PDOException $e){
@@ -69,7 +70,7 @@
                         <select name="day_selected">
                             <option value="sunday">Sunday</option>
                             <option value="monday">Monday</option>
-                            <option value="tuesdya">Tuesday</option>
+                            <option value="tuesday">Tuesday</option>
                             <option value="wednesday">Wednesday</option>
                             <option value="thursday">Thursday</option>
                             <option value="friday">Friday</option>
@@ -91,19 +92,75 @@
                         </select>
                     </div>
         </section>
+        <section>
+          <h3>3. Delivery address</h3>
+          <div id="checkout_info">
+            <div class="form-group has-feedback">
+              <input type="text" class="form-control" id="address" name="address" placeholder="Address" value="<?php echo (isset($_SESSION['address'])) ? $_SESSION['address'] : '' ?>" required>
+              <span class="glyphicon glyphicon-home form-control-feedback"></span>
+            </div>
+          </div>
+        </section>
         <div class="action_items">
         <div class="column">
         <a href="cart_view.php">Back</a>
         </div>
         <div class="column">
-        <form method="POST" action="invoice.php" style="float:right;">
-			<input type="submit" value="Place order" class="button">
-		</form>
+        <form method="POST" id="checkoutForm" action="" style="float:right;">
+          <input type="submit" value="Place order" class="button">
+          <input type="hidden" name="latitude" id="latitude">
+          <input type="hidden" name="longitude" id="longitude">
+          <input type="hidden" name="branch_lat" id="branch_lat">
+          <input type="hidden" name="branch_lng" id="branch_lng">
+        </form>
         </div>
         </div>
-        
-
         <?php include 'includes/footer.php'; ?>
 </div>
 </body>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDW0131G40rPrQ4xRh80sT9FwMm8vLgZ6w&libraries=places"></script>
+<script>
+
+    google.maps.event.addDomListener(window, 'load', initialize);
+  
+    function initialize() {
+      var input = document.getElementById("address")
+      var autocomplete = new google.maps.places.Autocomplete(input)
+  
+      autocomplete.addListener('place_changed', function () {
+        var place = autocomplete.getPlace();
+        let latitude = place.geometry['location'].lat()
+        let longitude = place.geometry['location'].lng()
+        document.querySelector("#latitude").setAttribute("value", latitude)
+        document.querySelector("#longitude").setAttribute("value", longitude)
+      })
+    }
+    
+    function setBranchCoordinates() {
+      const callback = function (predictions, status) {
+        if (status != google.maps.places.PlacesServiceStatus.OK || !predictions) {
+         alert(status);
+          return;
+        }
+        
+        let place_id = predictions[0].place_id
+        
+        const geocoder = new google.maps.Geocoder();
+        geocoder.geocode({placeId: place_id}).then(({results}) => {
+          let lat = results[0].geometry.location.lat();
+          let lng = results[0].geometry.location.lng();
+
+          document.querySelector("#branch_lat").setAttribute("value", lat)
+          document.querySelector("#branch_lng").setAttribute("value", lng)
+        })
+      }
+
+      branchSelect = document.querySelector("#branch_selected");
+      branchAddress = branchSelect[branchSelect.selectedIndex].value;
+      
+      const service = new google.maps.places.AutocompleteService();
+      service.getQueryPredictions({ input: branchAddress + ", Canada" }, callback);
+    }
+    
+  </script>
 <?php include 'includes/scripts.php'; ?>
