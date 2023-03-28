@@ -44,8 +44,8 @@
                 directionsRenderer.setMap(myMap);
                 directionsService
                 .route({
-                  origin: location1,
-                  destination: location2,
+                  origin: location2,
+                  destination: location1,
                   travelMode: google.maps.TravelMode.DRIVING,
                 })
                 .then((response) => {
