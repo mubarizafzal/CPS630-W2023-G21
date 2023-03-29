@@ -3,7 +3,7 @@
 <body class="hold-transition">
 <div class="wrapper">
 
-	<?php include 'includes/navbar.php'; ?>
+	<?php include './includes/navbar.php'; ?>
 	 
 	  <div class="content-wrapper">
 	    <div class="container">
