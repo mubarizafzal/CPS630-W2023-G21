@@ -2,7 +2,7 @@
   <nav class="navbar navbar-default navbar-static-top">
       <div class="container-fluid">
     <div class="navbar-header">
-      <a href="index.php" class="navbar-brand" style="color: #58a36c">
+      <a href="home.php" class="navbar-brand" style="color: #58a36c">
         <img src="../images/logo.png" style="width: 40px; height: auto; display: inline;"/>
         <b>Green Delivery</b> E-Commerce
       </a>
@@ -15,7 +15,7 @@
     <!-- Navigation options -->
     <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="nav navbar-nav">
-                <li><a href="index.php">Home</a></li>
+                <li><a href="home.php">Home</a></li>
                 <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Departments <span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">

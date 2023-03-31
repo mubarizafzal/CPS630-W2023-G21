@@ -1,10 +1,6 @@
 <?php include 'includes/session.php'; ?>
 <?php include 'includes/header.php'; ?>
-<nav class="navbar navbar-static-top">
-    <div class="navbar-header">
-        <a href="index.php" class="navbar-brand"><b>E-Commerce </b>Site</a>
-    </div>
-</nav>
+<?php include 'includes/navbar.php'; ?>
 <body>
 <div class="wrapper">
     <div class="content-wrapper">
@@ -54,6 +50,9 @@
                 .catch((e) => window.alert("Directions request failed due to " + status));
               }
             </script>
+            <div class="alert alert-success">
+            <strong>Success!</strong> Your purchase was processed.
+        </div>
         <h1 class="page-header">Your Delivery Route</h1>
         <div id="map" style="width: 800px; height: 600px"></div>
         <h1 class="page-header">Your Invoice</h1>
