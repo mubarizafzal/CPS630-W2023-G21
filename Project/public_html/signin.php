@@ -91,7 +91,7 @@
     	</form>
       <br>
       <a href="signup.php" class="text-center">I don't have an account</a><br>
-      <a href="index.php"><i class="fa fa-home"></i> Home</a>
+      <a href="home.php"><i class="fa fa-home"></i> Home</a>
   	</div>
 </div>
 	

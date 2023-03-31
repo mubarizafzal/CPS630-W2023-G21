@@ -121,7 +121,7 @@
     	</form>
       <br>
       <a href="signin.php">I already have an account</a><br>
-      <a href="index.php"><i class="fa fa-home"></i> Home</a>
+      <a href="home.php"><i class="fa fa-home"></i> Home</a>
   	</div>
 </div>
 </div>

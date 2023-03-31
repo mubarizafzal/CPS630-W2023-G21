@@ -9,5 +9,5 @@
     unset($_SESSION['admin']);
   }
 
-  header('location: index.php');
+  header('location: home.php');
  ?>
