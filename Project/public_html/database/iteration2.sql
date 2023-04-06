@@ -12,20 +12,21 @@ CREATE TABLE IF NOT EXISTS `user` (
 `id` int(11) AUTO_INCREMENT NOT NULL,
   `username` text NOT NULL,
   `password` text NOT NULL,
+  `salt` varchar(25) NOT NULL,
   `name` text NOT NULL,
   `telephone` text NOT NULL,
   `email` text NOT NULL,
   `address` text NOT NULL,
   `citycode` text NOT NULL,
   `balance` float NOT NULL DEFAULT 0,
+  `admin` tinyint(1) NOT NULL,
   PRIMARY KEY(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Insert data in table 'user'
 
-INSERT INTO `user` (`id`, `username`, `password`, `name`, `telephone`, `email`, `address`, `citycode`, `balance`) VALUES
-(1, 'hodo_a', 'password123', 'Hodo Abdirizak', '9999999999', 'tester@gmail.com', '123 Tester Road', 'CA', 0),
-(2, 'test_user', 'mypass', 'Tester Test', '1111111111', 'tester@hotmail.com', '2B Tester Street', 'CA', 0);
+INSERT INTO `user` (`id`, `username`, `password`, `name`, `telephone`, `email`, `address`, `citycode`, `balance`, `admin`) VALUES
+(1, 'admin', 'password', 'admin', 'admin', 'admin@admin', 'admin', 'admin', 9999, 1);
 -- --------------------------------------------------------
 --
 -- Table structure for table `order_placed`
@@ -153,15 +154,15 @@ CREATE TABLE IF NOT EXISTS `dailyitems` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 INSERT INTO `dailyitems` (`id`, `category_id`, `item_name`, `keyword`, `dept_code`, `made_in`, `price`, `description`, `code`, `photo`, `counter`) VALUES
-(1, 1, `item_name`, `bed`, 001, `Canada`, 299, `description`, `day1`, `day1.jpg`, `counter`),
-(2, 1, `item_name`, `bed`, 001, `Canada`, 299, `description`, `day2`, `day2.jpg`, `counter`),
-(3, 1, `item_name`, `bed`, 001, `Canada`, 199, `description`, `day3`, `day3.jpg`, `counter`),
-(4, 2, `item_name`, `sofa`, 001, `Canada`, 199, `description`, `day4`, `day4.jpg`, `counter`),
-(5, 2, `item_name`, `sofa`, 001, `Canada`, 399, `description`, `day5`, `day5.jpg`, `counter`),
-(6, 2, `item_name`, `sofa`, 001, `Canada`, 399, `description`, `day6`, `day6.jpg`, `counter`),
-(7, 3, `item_name`, `desk`, 001, `Canada`, 499, `description`, `day7`, `day7.jpg`, `counter`),
-(8, 3, `item_name`, `desk`, 001, `Canada`, 499, `description`, `day8`, `day8.jpg`, `counter`),
-(9, 3, `item_name`, `desk`, 001, `Canada`, 199, `description`, `day9`, `day9.jpg`, `counter`);
+(1, 1, `item_name`, 'bed', 001, 'Canada', 299, `description`, 'day1', 'day1.jpg', `counter`),
+(2, 1, `item_name`, 'bed', 001, 'Canada', 299, `description`, 'day2', 'day2.jpg', `counter`),
+(3, 1, `item_name`, 'bed', 001, 'Canada', 199, `description`, 'day3', 'day3.jpg', `counter`),
+(4, 2, `item_name`, 'sofa', 001, 'Canada', 199, `description`, 'day4', 'day4.jpg', `counter`),
+(5, 2, `item_name`, 'sofa', 001, 'Canada', 399, `description`, 'day5', 'day5.jpg', `counter`),
+(6, 2, `item_name`, 'sofa', 001, 'Canada', 399, `description`, 'day6', 'day6.jpg', `counter`),
+(7, 3, `item_name`, 'sofa', 001, 'Canada', 499, `description`, 'day7', 'day7.jpg', `counter`),
+(8, 3, `item_name`, 'sofa', 001, 'Canada', 499, `description`, 'day8', 'day8.jpg', `counter`),
+(9, 3, `item_name`, 'sofa', 001, 'Canada', 199, `description`, 'day9', 'day9.jpg', `counter`);
 
 
 
@@ -181,13 +182,13 @@ CREATE TABLE IF NOT EXISTS `review` (
 
 -- Insert data into review
 INSERT INTO `review` (`id`, `product_rating`, `overall_rating`, `product_rated`, `review`, `customer_name`) VALUES
-(1, '5', '5', 'LINANAS sofa', 'I recently ordered a reclaimed LINANAS sofa from Green Delivery E-commerce, and I’m thrilled with my purchase! The online shopping experience was a breeze, and their commitment to sustainable practices makes me feel great about supporting their business. Plus, their customer service is top-notch - they were able to answer all my questions about the materials used in their products. Highly recommend!', 'Susan T.'),
+(1, '5', '5', 'LINANAS sofa', 'I recently ordered a reclaimed LINANAS sofa from Green Delivery E-commerce, and I`m thrilled with my purchase! The online shopping experience was a breeze, and their commitment to sustainable practices makes me feel great about supporting their business. Plus, their customer service is top-notch - they were able to answer all my questions about the materials used in their products. Highly recommend!', 'Susan T.'),
 (2, '4', '5', 'LAIVA shelf', 'I bought a stylish bookshelf from Green Delivery E-commerce last month. Although I had some doubts about the assembly process, it turned out to be quite easy with the instructions provided. The shelf looks fantastic in my living room and has received numerous compliments. The shipping was fast, but I did find the packaging to be a bit excessive. Overall, a good experience!', 'Mark H.'),
-(3, '5', '5', 'SANDSBERG desk', 'Green Delivery E-commerce has become my go-to store for furniture. I’ve purchased a desk, bed frame, and a couple of accent chairs, and I’m in love with all of them. Their modern designs and eco-friendly materials are a breath of fresh air in the furniture market. The quality of the products is outstanding, and their green delivery options are a bonus. Keep up the great work!', 'Jessica L.'),
-(4, '3', '3', 'MICKE desk', 'I ordered an office desk from Green Delivery E-commerce, and while the quality of the desk itself was good, there were some issues with the delivery. The package arrived a few days later than expected, and there were some minor scratches on one of the legs. I contacted customer service, and they offered me a discount on my next purchase, which was nice. Overall, a decent experience, but there’s room for improvement.', 'Brian K.'),
-(5, '5', '4', 'KIVIK sofa', 'I can’t say enough good things about Green Delivery E-commerce! I was searching for the perfect, eco-friendly sofa, and I found it on their website. The fabric choices were amazing, and I love that they use recycled materials. When the sofa arrived, it was even more beautiful in person. The delivery team was professional and ensured everything was in perfect condition before leaving. I will definitely be shopping here again!', 'Samantha P.'),
-(6, '4', '4', 'BAGGEBO shelf', 'I ordered a shelf from Green Delivery E-commerce, and I’m quite satisfied with my purchase. The prices were competitive, and the quality of the products met my expectations. The only issue I faced was that one of the screws was missing from the TV stand package. However, customer service was responsive and sent the missing part promptly. Overall, a good experience, and I will consider them for future purchases.', 'Alex M.'),
-(7, '5', '5', 'GLOSTAD sofa', 'I’ve been a loyal customer of Green Delivery E-commerce for the past two years, and they never disappoint. Their selection of eco-friendly furniture is vast, and the quality is always top-notch. I recently bought an outdoor dining set made from recycled materials, and it looks fantastic in my backyard. Their customer service team is always ready to help with any questions or concerns, making it a smooth shopping experience every time', 'Lucy R.');
+(3, '5', '5', 'SANDSBERG desk', 'Green Delivery E-commerce has become my go-to store for furniture. I`ve purchased a desk, bed frame, and a couple of accent chairs, and I`m in love with all of them. Their modern designs and eco-friendly materials are a breath of fresh air in the furniture market. The quality of the products is outstanding, and their green delivery options are a bonus. Keep up the great work!', 'Jessica L.'),
+(4, '3', '3', 'MICKE desk', 'I ordered an office desk from Green Delivery E-commerce, and while the quality of the desk itself was good, there were some issues with the delivery. The package arrived a few days later than expected, and there were some minor scratches on one of the legs. I contacted customer service, and they offered me a discount on my next purchase, which was nice. Overall, a decent experience, but there`s room for improvement.', 'Brian K.'),
+(5, '5', '4', 'KIVIK sofa', 'I can`t say enough good things about Green Delivery E-commerce! I was searching for the perfect, eco-friendly sofa, and I found it on their website. The fabric choices were amazing, and I love that they use recycled materials. When the sofa arrived, it was even more beautiful in person. The delivery team was professional and ensured everything was in perfect condition before leaving. I will definitely be shopping here again!', 'Samantha P.'),
+(6, '4', '4', 'BAGGEBO shelf', 'I ordered a shelf from Green Delivery E-commerce, and I`m quite satisfied with my purchase. The prices were competitive, and the quality of the products met my expectations. The only issue I faced was that one of the screws was missing from the TV stand package. However, customer service was responsive and sent the missing part promptly. Overall, a good experience, and I will consider them for future purchases.', 'Alex M.'),
+(7, '5', '5', 'GLOSTAD sofa', 'I`ve been a loyal customer of Green Delivery E-commerce for the past two years, and they never disappoint. Their selection of eco-friendly furniture is vast, and the quality is always top-notch. I recently bought an outdoor dining set made from recycled materials, and it looks fantastic in my backyard. Their customer service team is always ready to help with any questions or concerns, making it a smooth shopping experience every time', 'Lucy R.');
 
 -- --------------------------------------------------------
 
@@ -264,3 +265,18 @@ INSERT INTO `truck` (`id`, `item_name`, `avail_code`) VALUES
 (1, 101, 123),
 (2, 202, 456),
 (3, 303, 789);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `payment`
+--
+
+CREATE TABLE IF NOT EXISTS `payment` (
+`id` int(11) NOT NULL,
+  `name` text NOT NULL,
+  `card_no` text NOT NULL,
+  `salt` text NOT NULL,
+  `exp_year` text NOT NULL,
+  `cvc` text NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
