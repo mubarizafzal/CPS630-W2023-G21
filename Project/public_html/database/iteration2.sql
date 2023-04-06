@@ -137,6 +137,34 @@ INSERT INTO `items` (`id`, `category_id`, `item_name`, `keyword`, `dept_code`, `
 
 -- --------------------------------------------------------
 
+CREATE TABLE IF NOT EXISTS `dailyitems` (
+  `id` int(11) AUTO_INCREMENT NOT NULL,
+  `category_id` int(11) NOT NULL,
+  `item_name` text NOT NULL,
+  `keyword` varchar(200) NOT NULL,
+  `dept_code` int(11) NOT NULL,
+  `made_in` varchar(100) NOT NULL,
+  `price` double NOT NULL,
+  `description` text NOT NULL,
+  `code` varchar(200) NOT NULL,
+  `photo` varchar(200) NOT NULL,
+  `counter` int(11) NOT NULL,
+  PRIMARY KEY(id)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+INSERT INTO `dailyitems` (`id`, `category_id`, `item_name`, `keyword`, `dept_code`, `made_in`, `price`, `description`, `code`, `photo`, `counter`) VALUES
+(1, 1, `item_name`, `bed`, 001, `Canada`, 299, `description`, `day1`, `day1.jpg`, `counter`),
+(2, 1, `item_name`, `bed`, 001, `Canada`, 299, `description`, `day2`, `day2.jpg`, `counter`),
+(3, 1, `item_name`, `bed`, 001, `Canada`, 199, `description`, `day3`, `day3.jpg`, `counter`),
+(4, 2, `item_name`, `sofa`, 001, `Canada`, 199, `description`, `day4`, `day4.jpg`, `counter`),
+(5, 2, `item_name`, `sofa`, 001, `Canada`, 399, `description`, `day5`, `day5.jpg`, `counter`),
+(6, 2, `item_name`, `sofa`, 001, `Canada`, 399, `description`, `day6`, `day6.jpg`, `counter`),
+(7, 3, `item_name`, `desk`, 001, `Canada`, 499, `description`, `day7`, `day7.jpg`, `counter`),
+(8, 3, `item_name`, `desk`, 001, `Canada`, 499, `description`, `day8`, `day8.jpg`, `counter`),
+(9, 3, `item_name`, `desk`, 001, `Canada`, 199, `description`, `day9`, `day9.jpg`, `counter`);
+
+
+
 --
 -- Table structure for table `review`
 --
