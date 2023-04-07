@@ -108,32 +108,33 @@
             </div>
 
             <div class="column">
-                <h1 class="page-header">Payment Details</h1>
+            <h1 class="page-header">Payment Details</h1>
                 <div class="container">
                     <div class="card">
-                        <div class="row gx-3">
+                            <form action="invoice.php" method="POST">
+                            <div class="row gx-3">
                                 <div class="col-12">
                                     <div class="d-flex flex-column">
                                         <p class="text mb-1">Cardholder Name</p>
-                                        <input class="form-control mb-3" type="text" placeholder="Name" value="John Doe">
+                                        <input class="form-control mb-3" type="text" name="name" placeholder="John Doe">
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="d-flex flex-column">
                                         <p class="text mb-1">Card Number</p>
-                                        <input class="form-control mb-3" type="text" placeholder="1234 5678 435678">
+                                        <input class="form-control mb-3" type="text" name="card_no" placeholder="1234 5678 435678">
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <div class="d-flex flex-column">
                                         <p class="text mb-1">Expiry Year</p>
-                                        <input class="form-control mb-3" type="text" placeholder="MM/YYYY">
+                                        <input class="form-control mb-3" type="text" name="exp_year" placeholder="MM/YYYY">
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <div class="d-flex flex-column">
                                         <p class="text mb-1">CVV/CVC</p>
-                                        <input class="form-control mb-3 pt-2 " type="password" placeholder="***">
+                                        <input class="form-control mb-3 pt-2" type="text" name="cvc" placeholder="1234">
                                     </div>
                                 </div>
                             </div>
@@ -148,8 +149,7 @@
                 <a href="cart_view.php">Back</a>
             </div>
             <div class="column">
-                <form method="POST" id="checkoutForm" action="" style="float:right;">
-                    <input type="submit" value="Place order" class="button">
+                <button type="submit" class="btn btn-warning btn-lg" name="place_order" style="float:right;"><i class="fa fa-shopping-cart"></i> Place Order</button>
                     <input type="hidden" name="latitude" id="latitude">
                     <input type="hidden" name="longitude" id="longitude">
                     <input type="hidden" name="branch_lat" id="branch_lat">

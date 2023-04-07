@@ -37,7 +37,7 @@
 						try{
 							$inc = 3;	
 							$stmt = $conn->prepare("SELECT * FROM items WHERE id BETWEEN 1 AND 18 ORDER BY RAND() LIMIT 3;");
-							$stmt->execute(['catid' => $catid]);
+							$stmt->execute();
 							foreach ($stmt as $row) {
 								$image = (!empty($row['photo'])) ? 'images/'.$row['photo'] : 'images/noimage.jpg';
 								$inc = ($inc == 3) ? 1 : $inc + 1;

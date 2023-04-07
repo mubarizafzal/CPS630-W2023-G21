@@ -14,7 +14,7 @@
 			$row = $stmt->fetch();
 			if($row['numrows'] > 0){
 				if(True || $row['status']){ // what is status? temp fix to make login work
-					if(password_verify($password, password_hash($row['password'], PASSWORD_DEFAULT))){
+					if($row['password'] == md5($password.$row['salt'])){
 						$_SESSION['user'] = $row['id'];
 					}
 					else{

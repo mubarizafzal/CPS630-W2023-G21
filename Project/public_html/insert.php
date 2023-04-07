@@ -21,7 +21,7 @@
                     document.getElementById('select_info').innerHTML = document.getElementById('content' + content).innerHTML
                     document.getElementById("select_info").style.display = "block";
                 }
-                else if (that.value == "cart") {
+                else if (that.value == "review") {
                     content = 3;
                     document.getElementById('select_info').innerHTML = document.getElementById('content' + content).innerHTML
                     document.getElementById("select_info").style.display = "block";
@@ -45,8 +45,14 @@
                     document.getElementById("select_info").style.display = "block";
                     document.getElementById('maincontent').style.display = "none";
                 }
-                else if (that.value == "order") {
+                else if (that.value == "order_placed") {
                     content = 7;
+                    document.getElementById('select_info').innerHTML = document.getElementById('content' + content).innerHTML
+                    document.getElementById("select_info").style.display = "block";
+                    document.getElementById('maincontent').style.display = "none";
+                } 
+                else if (that.value == "branch") {
+                    content = 8;
                     document.getElementById('select_info').innerHTML = document.getElementById('content' + content).innerHTML
                     document.getElementById("select_info").style.display = "block";
                     document.getElementById('maincontent').style.display = "none";
@@ -66,6 +72,12 @@
                     <option selected value="">Select a table</option>
                     <option value="items">Items</option>
                     <option value="user">User</option>
+                    <option value="category">Category</option>
+                    <option value="review">Review</option>
+                    <option value="truck">Truck</option>
+                    <option value="trip">Trip</option>
+                    <option value="order_placed">Order</option>
+                    <option value="branch">Branch</option>
                 </select>
                 <div id="select_info" style="display: none;">
                 
@@ -78,7 +90,7 @@
                     <?php include 'insert_items.php'; ?>
                 </div>
                 <div id="content3">
-                    <?php include 'insert_cart.php'; ?>
+                    <?php include 'insert_review.php'; ?>
                 </div>
                 <div id="content4">
                     <?php include 'insert_user.php'; ?>
@@ -91,6 +103,9 @@
                 </div>
                 <div id="content7">
                     <?php include 'insert_order.php'; ?>
+                </div>
+                <div id="content8">
+                    <?php include 'insert_branch.php'; ?>
                 </div>
             </div>
                 </div>
