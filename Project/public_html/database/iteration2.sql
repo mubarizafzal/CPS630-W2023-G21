@@ -18,15 +18,12 @@ CREATE TABLE IF NOT EXISTS `user` (
   `email` text NOT NULL,
   `address` text NOT NULL,
   `citycode` text NOT NULL,
-  `balance` float NOT NULL DEFAULT 0,
-  `admin` tinyint(1) NOT NULL,
+  `balance` float DEFAULT 0,
+  `admin` tinyint(1),
   PRIMARY KEY(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Insert data in table 'user'
 
-INSERT INTO `user` (`id`, `username`, `password`, `name`, `telephone`, `email`, `address`, `citycode`, `balance`, `admin`) VALUES
-(1, 'admin', 'password', 'admin', 'admin', 'admin@admin', 'admin', 'admin', 9999, 1);
 -- --------------------------------------------------------
 --
 -- Table structure for table `order_placed`
@@ -278,5 +275,6 @@ CREATE TABLE IF NOT EXISTS `payment` (
   `card_no` text NOT NULL,
   `salt` text NOT NULL,
   `exp_year` text NOT NULL,
-  `cvc` text NOT NULL
+  `cvc` text NOT NULL,
+  PRIMARY KEY(id)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
