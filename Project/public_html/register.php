@@ -37,7 +37,7 @@
         //$stmt = $conn->prepare("SELECT COUNT(*) AS numrows FROM user");
         // If we want to implement the registration funcitonality, we also need to provide an id to the
         // INSERT command
-
+			try{
 				// generates pseudo-random string for salting
 				function generateRandomSalt(){
 					return base64_encode(mcrypt_create_iv(12, MCRYPT_DEV_URANDOM));
