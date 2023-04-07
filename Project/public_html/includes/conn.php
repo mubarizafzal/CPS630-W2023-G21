@@ -5,6 +5,9 @@ Class Database{
 	private $server = "mysql:host=localhost;dbname=id20410332_iteration2";
 	private $username = "id20410332_root";
 	private $password = "H{O[J%P@6n&wblWK";
+	# for locally hosting
+	private $username = "root";
+	private $password = "";
 	private $options  = array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,);
 	protected $conn;
  	

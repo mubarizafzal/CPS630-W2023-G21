@@ -108,7 +108,7 @@
             </div>
 
             <div class="column">
-            <h1 class="page-header">Payment Details</h1>
+                <h1 class="page-header">Payment Details</h1>
                 <div class="container">
                     <div class="card">
                             <form action="invoice.php" method="POST">
@@ -158,7 +158,7 @@
             </div>
         </div>
        </div>
-    </div>    
+    </div>        
         <?php include 'includes/footer.php'; ?>
 </div>
  

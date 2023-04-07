@@ -39,14 +39,15 @@
         // INSERT command
 
 				try{
-					 // generates pseudo-random string for salting
-					 function generateRandomSalt(){
-						return base64_encode(mcrypt_create_iv(12, MCRYPT_DEV_URANDOM));
-				  }
-				  $salt = generateRandomSalt();
-				  $stmt = $conn->prepare("INSERT INTO user (username, password, salt, name, telephone, email, address, citycode) VALUES (:username, :password, :salt, :name, :telephone, :email, :address, :citycode)");
-		$stmt->execute(['username'=>$username, 'password'=>md5($password.$salt), 'salt'=>$salt, 'name'=>$name, 'telephone'=>$telephone, 'email'=>$email, 'address'=>$address, 'citycode'=>$citycode]);
-				  $userid = $conn->lastInsertId();
+                    // generates pseudo-random string for salting
+					function generateRandomSalt(){
+  						return base64_encode(mcrypt_create_iv(12, MCRYPT_DEV_URANDOM));
+					}
+					$salt = generateRandomSalt();
+					$stmt = $conn->prepare("INSERT INTO user (username, password, salt, name, telephone, email, address, citycode) VALUES (:username, :password, :salt, :name, :telephone, :email, :address, :citycode)");
+          $stmt->execute(['username'=>$username, 'password'=>md5($password.$salt), 'salt'=>$salt, 'name'=>$name, 'telephone'=>$telephone, 'email'=>$email, 'address'=>$address, 'citycode'=>$citycode]);
+                    $userid = $conn->lastInsertId();
+
 					$message = "
 						<h2>Thank you for Registering.</h2>
 						<p>Your Account:</p>
