@@ -24,6 +24,9 @@ CREATE TABLE IF NOT EXISTS `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
+INSERT INTO `user` (`id`, `username`, `password`, `salt`, `name`, `telephone`, `email`, `address`, `citycode`, `balance`, `admin`) VALUES
+(1, 'admin', '57c998c24e83a39444d8b41d1831cf5a', '0nXR59FRrTiW+stf', 'Admin User', '1111111111', 'admin@website.com', '1A Admin Street', 'CA', 0, 1);
+
 -- --------------------------------------------------------
 --
 -- Table structure for table `order_placed`
