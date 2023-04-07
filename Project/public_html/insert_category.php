@@ -3,12 +3,12 @@
     include 'includes/session.php';
     $conn = $pdo->open();
 
-    $name = $_POST['name'];
+    $category_name = $_POST['name'];
     $genre = $_POST['genre'];
 
     try {
-        $sql = "INSERT INTO items (category_id, item_name, keyword, dept_code, made_in, price, description, code, photo, counter)
-            VALUES ('$category_id', '$item_name', '$keyword', '$dept_code', '$made_in', '$price', '$description', '$code', '$photo', '$counter')";
+        $sql = "INSERT INTO category (name, genre)
+            VALUES ('$name', '$genre')";
 
         $conn->exec($sql);
         $pdo->close();
@@ -21,8 +21,8 @@
 ?>
 
 <form method="POST" action="insert_category.php">
-    <label for="name">Name:</label><br>
-    <input type="number" name="category_id" id="category_id"><br><br>
+    <label for="category_name">Category Name:</label><br>
+    <input type="text" name="name" id="category_name"><br><br>
     <label for="genre">Genre:</label><br>
     <input type="text" name="genre" id="genre"><br><br>
     <input type="submit" value="Add Item"><br>

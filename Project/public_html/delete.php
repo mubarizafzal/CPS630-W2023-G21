@@ -29,6 +29,8 @@
                         <option value="truck">Truck</option>
                         <option value="trip">Trip</option>
                         <option value="order_placed">Order</option>
+                        <option value="review">Reviews</option>
+                        <option value="branch">Branch</option>
                     </select>
                     <input type="submit" name="SubmitTable"/>
                     
