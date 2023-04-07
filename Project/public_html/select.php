@@ -63,6 +63,7 @@
                 <h1 class="page-header">Select</h1>
                 <p> Choose which tables to select from: </p>
                 <select onchange="selectedTable(this);">
+                    <option selected value="">Select a table</option>
                     <option value="category">Category</option>
                     <option value="items">Items</option>
                     <option value="cart">Shopping Cart</option>
