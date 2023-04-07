@@ -13,8 +13,53 @@
 			}
 </style>
 	      <!-- Main content -->
+
+		  
+
 	      <section class="content">
+			
 	        <div class="row">
+			<div>
+				<?php
+						$conn = $pdo->open();
+
+						try{
+							$daysOfWeek = array('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday');
+							$today = date('w');
+							$inc = 1;	
+							$stmt = $conn->prepare("SELECT * FROM items WHERE id = ($today+1);");
+							$stmt->execute(['catid' => $catid]);
+							foreach ($stmt as $row) {
+								$image = (!empty($row['photo'])) ? 'images/'.$row['photo'] : 'images/noimage.jpg';
+								$inc = ($inc == 3) ? 1 : $inc + 1;
+								if($inc == 1) echo "<div class='row'>";
+								echo "
+								<div style='position: absolute; right: 0; left: 20%; up: 50%; margin-left: 50%; margin-top 20%; text-align: center;	'>
+									<div class='col-sm-4' style=' text-align: center'>
+									<p style='padding-left: 90px;'><b>TODAYS DAILY SPECIAL</b></p>
+										<div class='box box-solid' id='".$row['item_name'].'_'.$row['id'].'_'.$row['price']."' style='left:30px'>
+											<div draggable='true' class='box-body prod-body style=text-align: center'>
+												<img src='".$image."' width='200%' height='200%' class='thumbnail'>
+												<h5 style='padding-left: 90px;'><a href='product.php?item=".$row['code']."'>".$row['item_name']."</a></h5>
+											</div>
+											<div class='box-footer'>
+												<b style='padding-left: 85px;'>&#36; ".number_format($row['price'], 2)."</b>
+											</div>
+										</div>
+									</div>
+									</div>
+								";
+								if($inc == 3) echo "</div>";
+							}
+							if($inc == 1) echo "<div class='col-sm-4'></div><div class='col-sm-4'></div></div>"; 
+							if($inc == 2) echo "<div class='col-sm-4'></div></div>";
+						}
+						catch(PDOException $e){
+							echo "A connection cannot be established: " . $e->getMessage();
+						}
+						$pdo->close();
+				?>
+			</div>
 	        	<div class="col-sm-9">
 	        		<?php
 	        			if(isset($_SESSION['error'])){
@@ -26,6 +71,8 @@
 	        				unset($_SESSION['error']);
 	        			}
 	        		?>
+					
+
 	        		<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
 		                <ol class="carousel-indicators">
 		                  <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
@@ -53,7 +100,7 @@
 		       		
 	        	</div>
 	        </div>
-	      </section>
+	      </section> 
 	     
 	    </div>
 	  </div>
