@@ -2,32 +2,32 @@
 <?php include 'includes/header.php'; ?>
 <?php include 'includes/navbar.php'; ?>
 <?php
-	if(isset($_POST['place_order'])){
-		$name = $_POST['name'];
-    	$card_no = $_POST['card_no'];
-		$exp_year = $_POST['exp_year'];
-		$cvc = $_POST['cvc'];
+	if(isset($_SESSION['place_order'])){
+		$name = $_SESSION['name'];
+    $card_no = $_SESSION['card_no'];
+		$exp_year = $_SESSION['exp_year'];
+		$cvc = $_SESSION['cvc'];
 
 		$conn = $pdo->open();
-
+    
 		try{
-			// generates pseudo-random string for salting
-			function generateRandomSalt(){
-  				return base64_encode(mcrypt_create_iv(12, MCRYPT_DEV_URANDOM));
-			}
-			$salt = generateRandomSalt();
-			$stmt = $conn->prepare("INSERT INTO payment (name, card_no, salt, exp_year, cvc) VALUES (:name, :card_no, :salt, :exp_year, :cvc)");
-          $stmt->execute(['name'=>$name, 'card_no'=>md5($card_no.$salt), 'salt'=>$salt, 'exp_year'=>$exp_year, 'cvc'=>$cvc]);
-          $payid = $conn->lastInsertId();
-        } 
-        catch (Exception $e) {
-            $_SESSION['error'] = 'An error occurred when processing your purchase.';
-            echo $e->getMessage();
-            header('location: checkout.php');
-        }
-
-        $pdo->close();
+      // generates pseudo-random string for salting
+      function generateRandomSalt(){
+        return base64_encode(random_bytes(12));
       }
+      $salt = generateRandomSalt();
+        $stmt = $conn->prepare("INSERT INTO payment (name, card_no, salt, exp_year, cvc) VALUES (:name, :card_no, :salt, :exp_year, :cvc)");
+        $stmt->execute(['name'=>$name, 'card_no'=>md5($card_no.$salt), 'salt'=>$salt, 'exp_year'=>$exp_year, 'cvc'=>$cvc]);
+        $payid = $conn->lastInsertId();
+    } 
+    catch (Exception $e) {
+        $_SESSION['error'] = 'An error occurred when processing your purchase.';
+        echo $e->getMessage();
+        header('location: checkout.php');
+    }
+    
+    $pdo->close();
+  }
 ?>
 <body>
 <div class="wrapper">

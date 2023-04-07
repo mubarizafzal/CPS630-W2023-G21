@@ -34,20 +34,21 @@
 }
 </style>
 <body>
-<div class="wrapper">
-
+  <div class="wrapper">
+    
     <div class="content-wrapper">
 
 	    <div class="container">
-
-        <div class="row">
         
-            <div class="column">
-                <h1 class="page-header">Checkout</h1>
+        <div class="row">
+          
+          <div class="column">
+            <h1 class="page-header">Checkout</h1>
+              <form id="checkoutForm">
                 <section>
                     <h3>1. Select a branch location:</h3>
                     <div id="checkout_info">
-                    <select name="branch_selected" id="branch_selected" onchange="setBranchCoordinates()">
+                    <select name="branch_selected" id="branch_selected" onchange="setBranchCoordinates()" required>
                     <option selected disabled>Select a branch:</option>
                     <?php 
                     $conn = $pdo->open();
@@ -71,7 +72,7 @@
                         <div class="row">
                             <div class="column">
                                 <h5>Select day of the week</h5>
-                                <select name="day_selected">
+                                <select name="day_selected" required>
                                     <option value="sunday">Sunday</option>
                                     <option value="monday">Monday</option>
                                     <option value="tuesday">Tuesday</option>
@@ -83,7 +84,7 @@
                             </div>
                             <div class="column">
                                 <h5>Select time for pickup</h5>
-                                <select name="day_selected">
+                                <select name="day_selected" required>
                                     <option value="time_1">9:30 AM</option>
                                     <option value="time_2">11:00 AM</option>
                                     <option value="time_3">12:30 PM</option>
@@ -111,30 +112,29 @@
             <h1 class="page-header">Payment Details</h1>
                 <div class="container">
                     <div class="card">
-                            <form action="invoice.php" method="POST">
                             <div class="row gx-3">
                                 <div class="col-12">
                                     <div class="d-flex flex-column">
                                         <p class="text mb-1">Cardholder Name</p>
-                                        <input class="form-control mb-3" type="text" name="name" placeholder="John Doe">
+                                        <input class="form-control mb-3" type="text" name="name" placeholder="John Doe" required>
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="d-flex flex-column">
                                         <p class="text mb-1">Card Number</p>
-                                        <input class="form-control mb-3" type="text" name="card_no" placeholder="1234 5678 435678">
+                                        <input class="form-control mb-3" type="text" name="card_no" placeholder="1234 5678 435678" required>
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <div class="d-flex flex-column">
                                         <p class="text mb-1">Expiry Year</p>
-                                        <input class="form-control mb-3" type="text" name="exp_year" placeholder="MM/YYYY">
+                                        <input class="form-control mb-3" type="text" name="exp_year" placeholder="MM/YYYY" required>
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <div class="d-flex flex-column">
                                         <p class="text mb-1">CVV/CVC</p>
-                                        <input class="form-control mb-3 pt-2" type="text" name="cvc" placeholder="1234">
+                                        <input class="form-control mb-3 pt-2" type="text" name="cvc" placeholder="123" required>
                                     </div>
                                 </div>
                             </div>

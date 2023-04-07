@@ -148,7 +148,7 @@ $(function(){
 
     $.ajax({
   		type: 'POST',
-  		url: 'save_address.php',
+  		url: 'save_checkout_info.php',
   		data: product,
   		dataType: 'json',
   		success: function(response){

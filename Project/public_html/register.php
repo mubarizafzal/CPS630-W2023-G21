@@ -40,7 +40,7 @@
 			try{
 				// generates pseudo-random string for salting
 				function generateRandomSalt(){
-					return base64_encode(mcrypt_create_iv(12, MCRYPT_DEV_URANDOM));
+					return base64_encode(random_bytes(12));
 			  }
 			  $salt = generateRandomSalt();
 			  $stmt = $conn->prepare("INSERT INTO user (username, password, salt, name, telephone, email, address, citycode) VALUES (:username, :password, :salt, :name, :telephone, :email, :address, :citycode)");
