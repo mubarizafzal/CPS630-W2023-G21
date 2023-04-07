@@ -66,6 +66,11 @@
                     <option selected value="">Select a table</option>
                     <option value="items">Items</option>
                     <option value="user">User</option>
+                    <option value="category">Category</option>
+                    <option value="cart">Shopping Cart</option>
+                    <option value="truck">Truck</option>
+                    <option value="trip">Trip</option>
+                    <option value="order">Order</option>
                 </select>
                 <div id="select_info" style="display: none;">
                 

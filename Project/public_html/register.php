@@ -38,10 +38,14 @@
         // If we want to implement the registration funcitonality, we also need to provide an id to the
         // INSERT command
 
-				try{
-					$stmt = $conn->prepare("INSERT INTO user (username, password, name, telephone, email, address, citycode) VALUES (:username, :password, :name, :telephone, :email, :address, :citycode)");
-          $stmt->execute(['username'=>$username, 'password'=>$password, 'name'=>$name, 'telephone'=>$telephone, 'email'=>$email, 'address'=>$address, 'citycode'=>$citycode]);
-          $userid = $conn->lastInsertId();
+				// generates pseudo-random string for salting
+				function generateRandomSalt(){
+					return base64_encode(mcrypt_create_iv(12, MCRYPT_DEV_URANDOM));
+			  }
+			  $salt = generateRandomSalt();
+			  $stmt = $conn->prepare("INSERT INTO user (username, password, salt, name, telephone, email, address, citycode) VALUES (:username, :password, :salt, :name, :telephone, :email, :address, :citycode)");
+			$stmt->execute(['username'=>$username, 'password'=>md5($password.$salt), 'salt'=>$salt, 'name'=>$name, 'telephone'=>$telephone, 'email'=>$email, 'address'=>$address, 'citycode'=>$citycode]);
+          		$userid = $conn->lastInsertId();
 
 					$message = "
 						<h2>Thank you for Registering.</h2>
