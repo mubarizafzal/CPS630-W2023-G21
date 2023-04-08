@@ -8,3 +8,7 @@ how to run project
 4. Create database named "id20410332_iteration2"
 5. To import the database, click on 'Browse Files' and select “iteration2.sql” file inside “database” folder
 6. Go to URL http://localhost/Project/public_html/home.php
+
+
+
+addtionally site can be ran at: https://cps630group21.000webhostapp.com/home.php
