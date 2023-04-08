@@ -7,7 +7,7 @@ how to run project
 3. Go to Databases tab
 4. Create database named "id20410332_iteration2"
 5. To import the database, click on 'Browse Files' and select “iteration2.sql” file inside “database” folder
-6. Go to URL http://localhost/Project/public_html/home.php
+6. Go to URL http://localhost/Team_21_Sec_03/public_html/home.php
 
 
 
