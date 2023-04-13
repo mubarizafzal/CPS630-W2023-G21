@@ -40,6 +40,7 @@
           echo "<td>" . $row['id'] . "</td>";
           echo "<td>" . $row['username'] . "</td>";
           echo "<td>" . $row['password'] . "</td>";
+          echo "<td>" . $row['salt'] . "</td>";
           echo "<td>" . $row['name'] . "</td>";
           echo "<td>" . $row['telephone'] . "</td>";
           echo "<td>" . $row['email'] . "</td>";
