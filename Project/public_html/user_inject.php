@@ -22,6 +22,7 @@
       <th>ID</th>
       <th>Username</th>
       <th>Password</th>
+      <th>Salt</th>
       <th>Name</th>
       <th>Telephone</th>
       <th>Email</th>
